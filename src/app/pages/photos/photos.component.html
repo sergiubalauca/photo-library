@@ -1,0 +1,9 @@
+<div *ngIf="photos$ | async; let photos">
+  <app-grid-gallery
+    [isFavorite]="false"
+    [images]="photos"
+    (imageClicked)="uploadToRxdb($event)"
+    (loadMore)="loadMoreEntries()"
+  >
+  </app-grid-gallery>
+</div>

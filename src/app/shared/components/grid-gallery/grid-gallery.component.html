@@ -1,0 +1,52 @@
+<!-- <div #grid class="gridEndItem"></div> -->
+
+<div *ngIf="isFavorite; else allPhotos">
+  <mat-grid-list [cols]="cols">
+    
+      <mat-grid-tile *ngFor="let item of images$ | async">
+        <app-grid-gallery-item
+          #item
+          [isFavorite]="isFavorite"
+          [image]="item"
+          [rowHeight]="3"
+          [gutterSize]="20"
+          (imageClicked)="imageClicked.emit($event)"
+          (removeFromFavorites)="removeFromFavorites.emit(item)"
+        >
+        </app-grid-gallery-item>
+      </mat-grid-tile>
+    
+  </mat-grid-list>
+</div>
+<ng-template #allPhotos>
+  <mat-grid-list [cols]="cols">
+    <ng-container #itemsContainer></ng-container>
+    <ng-template #item let-item="item">
+      <mat-grid-tile>
+        <app-grid-gallery-item
+          #item
+          [isFavorite]="isFavorite"
+          [image]="item"
+          [rowHeight]="3"
+          [gutterSize]="20"
+          (imageClicked)="imageClicked.emit($event)"
+          (removeFromFavorites)="removeFromFavorites.emit(item)"
+        >
+        </app-grid-gallery-item>
+      </mat-grid-tile>
+    </ng-template>
+  </mat-grid-list>
+
+  <ng-container #gridEndContainer></ng-container>
+  <ng-template #gridEndItem>
+    <div
+      #grid
+      class="gridEndItem"
+      bnIntersectionObserver
+      (isIntersectingEvent)="loadMoreEntries()"
+      #intersection="intersection"
+    >
+      Loading...
+    </div>
+  </ng-template>
+</ng-template>

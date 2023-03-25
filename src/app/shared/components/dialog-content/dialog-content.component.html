@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Favorite Photo Details</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-subtitle>{{ data.image.author }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div>
+        <img
+          #img
+          mat-card-image
+          [src]="data.image.download_url"
+          alt="Photo of a Shiba Inu"
+          style="width: 100%; object-fit: cover"
+        />
+      </div>
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Remove from favorites</button>
+</mat-dialog-actions>

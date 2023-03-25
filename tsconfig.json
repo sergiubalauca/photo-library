@@ -24,6 +24,7 @@
     ],
     "paths": {
 			"@shared": ["./src/app/shared/index.ts"],
+      "@localStorage": ["./src/app/local-storage/index.ts"],
 		},
     "useDefineForClassFields": false
   },

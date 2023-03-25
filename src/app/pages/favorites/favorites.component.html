@@ -1,0 +1,9 @@
+<div *ngIf="favPhotos$ | async; let photos">
+  <app-grid-gallery
+    [isFavorite]="true"
+    [images]="photos"
+    (removeFromFavorites)="removeFromFavorites($event)"
+    [images$]="favPhotos$"
+  >
+  </app-grid-gallery>
+</div>
